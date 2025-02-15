@@ -225,10 +225,13 @@ public class BinaryTree {
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
         if(node != null) {
+            //recursive on left
             replaceValueHelper(node.left, oldVal, newVal);
+            //check for old value, replace with new value
             if (node.data == oldVal) {
                 node.data = newVal;
             }
+            //recursive on right
             replaceValueHelper(node.right, oldVal, newVal);
         }
     }
@@ -252,23 +255,26 @@ public class BinaryTree {
 
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
+        //max value
         int minVal = Integer.MAX_VALUE;
         int right = 0;
         int left = 0;
        if (node != null) {
+           //calculate left
            left = findMinHelper(node.left);
            if(left < minVal) {
                minVal = left;
            }
+           //compare node data to minVal, if data is less, update mivVal
            if(node.data < minVal) {
                minVal = node.data;
            }
+           //calculate right
            right = findMinHelper(node.right);
            if (right < minVal) {
                minVal = right;
            }
        }
-System.out.println(minVal);
        return minVal;
     }
 
@@ -294,10 +300,13 @@ System.out.println(minVal);
         // RETURNING -1 IN THIS STUB, WHICH WILL FAIL ALL TESTS. REPLACE IT WITH YOUR CODE
         int amount = 0;
         if(node != null) {
+            //left side
             amount += nodesGTHelper(node.left, val);
+            //check for greater than, increment amount if so
             if (node.data > val) {
                 amount++;
             }
+            //right side
             amount += nodesGTHelper(node.right, val);
         }
 
@@ -343,14 +352,18 @@ System.out.println(minVal);
         // COUNT LOCATIONS IN THE RETURNED ARRAY AS SHOWN BELOW, ELSE
         // THE 'SUM' IS RETURNED IN INDEX LOCATION 0, AND COUNT IS LOCATION 1
         if(n != null) {
-
+            //get the total and count of the left side
             left = averageHelper(n.left);
+            //add it to the totals
             for(int i = 0; i <= 1; i++) {
                 values[i] += left[i];
             }
+            //add the centers
             values[0] += n.data;
             values[1]++;
+            //get the total and count of the right side
             right = averageHelper(n.right);
+            //add it to the totals
             for(int i = 0; i <= 1; i++) {
                 values[i] += right[i];
             }
